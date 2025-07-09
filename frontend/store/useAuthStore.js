@@ -4,8 +4,7 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
 
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001/" : "/";
-
+const BASE_URL = import.meta.env.MODE === "development" ? "https://chatting-app01-14olzdsex-rajan-jhas-projects-370b538f.vercel.app" : "https://chatting-app01-14olzdsex-rajan-jhas-projects-370b538f.vercel.app";
 export const useAuthStore = create((set, get) => ({
     authUser: null,
     isSigningUp: false,
@@ -38,11 +37,14 @@ export const useAuthStore = create((set, get) => ({
             toast.success("Account created successfully");
             get().connectSocket();
         } catch (error) {
-            toast.error(error.response.data.message);
+            console.error("Signup error:", error);
+            const errorMessage = error.response?.data?.message || "Signup failed. Please try again.";
+            toast.error(errorMessage);
         } finally {
             set({ isSigningUp: false });
         }
     },
+
 
     login: async (data) => {
         set({ isLoggingIn: true });

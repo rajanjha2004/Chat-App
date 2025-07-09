@@ -13,12 +13,11 @@ const Port = process.env.PORT
 const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-    cors({
-        origin: "http://localhost:5174",
-        credentials: true,
-    })
-);
+app.use(cors({
+    origin: "http://localhost:5173", // frontend ka local URL
+    credentials: true
+}));
+
 
 app.use('/', authroute)
 app.use('/', messageroute);
