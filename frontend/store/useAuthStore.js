@@ -1,10 +1,12 @@
+//File : frontend/store/useAuthStore.js
+
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
 
-const BASE_URL = import.meta.env.MODE === "development" ? "https://chatting-app01-14olzdsex-rajan-jhas-projects-370b538f.vercel.app" : "https://chatting-app01-14olzdsex-rajan-jhas-projects-370b538f.vercel.app";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5000" :"https://chat-app-production-bc9b.up.railway.app";
 export const useAuthStore = create((set, get) => ({
     authUser: null,
     isSigningUp: false,
